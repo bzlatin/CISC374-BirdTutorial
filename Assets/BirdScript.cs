@@ -8,9 +8,22 @@ public class BirdScript : MonoBehaviour
     public LogicScript logic;
     public bool birdIsAlive = true;
 
+
+    SoundEffectsPlayer audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
+
+    }
+
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+
+        // Spawn bird at top of screen 
+        float screenTop = Camera.main.orthographicSize - 1f; // Adjust to stay inside the camera
+        transform.position = new Vector3(0, screenTop, 0); // Spawn at (0, Top of Screen)
 
     }
 
@@ -19,9 +32,11 @@ public class BirdScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive)
         {
+            audioManager.PlaySFX(audioManager.jump);
             myRigidBody.linearVelocity = new Vector2(myRigidBody.linearVelocity.x, flapStrength);
+
         }
-        if(transform.position.y > 17 || transform.position.y < -17) {
+        if(transform.position.y > 18 || transform.position.y < -18) {
             logic.gameOver();
             birdIsAlive = false;
 
