@@ -21,7 +21,7 @@ public class LogicScript : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundEffectsPlayer>();
     }
 
-    public void addScore(int scoreToAdd)
+    public void AddScore(int scoreToAdd)
     {
         if (!gameOverScreen.activeSelf)
         {
@@ -42,7 +42,7 @@ public class LogicScript : MonoBehaviour
         }
     }
 
-    public void gameOver() 
+    public void GameOver() 
     {
         if (!isGameOver) 
         {
@@ -90,7 +90,7 @@ public class LogicScript : MonoBehaviour
         HighScoreText.color = Color.white; // Reset color
     }
 
-    public void restartGame() 
+    public void RestartGame() 
     {
         isGameOver = false;
         isNewHighScore = false; 
